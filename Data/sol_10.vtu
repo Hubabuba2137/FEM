@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<VTKFile type="UnstructuredGrid" version="0.1" byte_order="LittleEndian">
+  <UnstructuredGrid>
+    <Piece NumberOfPoints="16" NumberOfCells="9">
+      <Points>
+        <DataArray type="Float32" NumberOfComponents="3" format="ascii">
+          0.1 0.005 0
+          0.0666667 0.005 0
+          0.0333333 0.005 0
+          0 0.005 0
+          0.1 -0.0283333 0
+          0.0666667 -0.0283333 0
+          0.0333333 -0.0283333 0
+          0 -0.0283333 0
+          0.1 -0.0616667 0
+          0.0666667 -0.0616667 0
+          0.0333333 -0.0616667 0
+          0 -0.0616667 0
+          0.1 -0.095 0
+          0.0666667 -0.095 0
+          0.0333333 -0.095 0
+          0 -0.095 0
+        </DataArray>
+      </Points>
+      <Cells>
+        <DataArray type="Int32" Name="connectivity" format="ascii">
+          0 1 5 4
+          1 2 6 5
+          2 3 7 6
+          4 5 9 8
+          5 6 10 9
+          6 7 11 10
+          8 9 13 12
+          9 10 14 13
+          10 11 15 14
+        </DataArray>
+        <DataArray type="Int32" Name="offsets" format="ascii">
+          4
+          8
+          12
+          16
+          20
+          24
+          28
+          32
+          36
+        </DataArray>
+        <DataArray type="UInt8" Name="types" format="ascii">
+          9
+          9
+          9
+          9
+          9
+          9
+          9
+          9
+          9
+        </DataArray>
+      </Cells>
+      <PointData Scalars="Temperature">
+        <DataArray type="Float32" Name="Temperature" format="ascii">
+          -0.549385
+          -0.549385
+          -0.549385
+          -0.549385
+          1.64013
+          1.64014
+          1.64014
+          1.64014
+          -9.24354
+          -9.24354
+          -9.24354
+          -9.24354
+          53.5512
+          53.5512
+          53.5512
+          53.5512
+        </DataArray>
+      </PointData>
+    </Piece>
+  </UnstructuredGrid>
+</VTKFile>
