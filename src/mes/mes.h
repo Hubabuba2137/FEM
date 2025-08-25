@@ -89,24 +89,24 @@ namespace Fem{
         }
     };
 
-    std::vector<Fem::Node> load_nodes(std::string file_name);
-    std::vector<Fem::Element> load_quad_elements(std::string file_name);
-    std::vector<Fem::Node> set_bc(std::string file_name, std::vector<Fem::Node>& nodes);
+    std::vector<Node> load_nodes(std::string file_name);
+    std::vector<Element> load_quad_elements(std::string file_name);
+    std::vector<Node> set_bc(std::string file_name, std::vector<Node>& nodes);
 
-    float distance(Fem::Node A, Fem::Node B);
-    Fem::Matrix jacobian_mat(Fem::Element &element, std::vector<Fem::Node> &nodes, float pc_xi, float pc_eta);
-    float det_jacobian(Fem::Matrix jacobian_mat);
-    Fem::Matrix inv_jacobian_mat(Fem::Matrix jacobian_mat);
+    float distance(Node A, Node B);
+    Matrix jacobian_mat(Element &element, std::vector<Node> &nodes, float pc_xi, float pc_eta);
+    float det_jacobian(Matrix jacobian_mat);
+    Matrix inv_jacobian_mat(Matrix jacobian_mat);
     
-    Fem::Matrix calc_local_H(Fem::Element &element, std::vector<Fem::Node> &nodes, float conductivity);
-    Fem::Matrix calc_local_Hbc(Fem::Element &element, std::vector<Fem::Node> &nodes);
-    Fem::Matrix calc_P(Fem::Element &element, std::vector<Fem::Node> &nodes);
-    Fem::Matrix calc_local_C(Fem::Element &element, std::vector<Fem::Node> &nodes, float rho, float c);
+    Matrix calc_local_H(Element &element, std::vector<Node> &nodes, float conductivity);
+    Matrix calc_local_Hbc(Element &element, std::vector<Node> &nodes);
+    Matrix calc_P(Element &element, std::vector<Node> &nodes);
+    Matrix calc_local_C(Element &element, std::vector<Node> &nodes, float rho, float c);
     
-    void aggregate(Fem::Matrix &Global, Fem::Element element, Fem::Matrix &Local);
-    void aggregate_p_vec(Fem::Matrix &P_vec, Fem::Element element, Fem::Matrix &Local);
+    void aggregate(Matrix &Global, Element element, Matrix &Local);
+    void aggregate_p_vec(Matrix &P_vec, Element element, Matrix &Local);
     
-    void write_to_vtu_file(int step, const std::vector<Fem::Node>& nodes, const std::vector<double>& temp, const std::vector<Fem::Element>& elements);
+    void write_to_vtu_file(int step, const std::vector<Node>& nodes, const std::vector<double>& temp, const std::vector<Element>& elements);
     
     struct GlobalData{
         float total_time;
@@ -142,8 +142,8 @@ namespace Fem{
         Matrix Global_C;
         Matrix Global_P;
         GlobalData conf;
-        std::vector<Fem::Node> nodes;
-        std::vector<Fem::Element> elements;
+        std::vector<Node> nodes;
+        std::vector<Element> elements;
 
         Solution(Matrix &Global_H, Matrix &Global_C, Matrix &Global_P, GlobalData &conf, std::vector<Node> &nodes, std::vector<Element> &elements): Global_H(4,4), Global_C(4,4), Global_P(4,4){
             this->Global_H = Global_H;
@@ -167,16 +167,16 @@ namespace Fem{
 
             print_config(this->conf);
 
-            this->Global_H = Fem::Matrix(conf.node_number,conf.node_number);
-            this->Global_C = Fem::Matrix(conf.node_number,conf.node_number);
+            this->Global_H = Matrix(conf.node_number,conf.node_number);
+            this->Global_C = Matrix(conf.node_number,conf.node_number);
 
-            this->Global_P = Fem::Matrix(conf.node_number,1);
+            this->Global_P = Matrix(conf.node_number,1);
 
             //tworzenie macierzy dla każdego elementu
             std::cout<<"Assembling elemental matrices...\n";
             int i =0;
             int max_iter = this->elements.size();
-            for(Fem::Element &element: this->elements){
+            for(Element &element: this->elements){
                 
                 element.H_local = calc_local_H(element, this->nodes, this->conf.conductivity);
                 element.H_bc = calc_local_Hbc(element, this->nodes);

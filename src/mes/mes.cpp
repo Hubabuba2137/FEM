@@ -504,7 +504,6 @@ void Fem::aggregate_p_vec(Fem::Matrix &P_vec, Fem::Element element, Fem::Matrix 
 
 void Fem::write_to_vtu_file(int step, const std::vector<Fem::Node> &nodes, const std::vector<double> &temp, const std::vector<Fem::Element> &elements)
 {
-    struct stat st;
 
     std::ostringstream fname;
     fname << "sol_" << step << ".vtu";
