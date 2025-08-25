@@ -290,12 +290,12 @@ Matrix jacobian_mat(Element &element, std::vector<Node> &nodes, float pc_xi, flo
     return jacobian;
 }
 
-float Fem::det_jacobian(Fem::Matrix jacobian_mat)
+float det_jacobian(Fem::Matrix jacobian_mat)
 {
     return jacobian_mat[0][0]*jacobian_mat[1][1] - jacobian_mat[1][0]*jacobian_mat[0][1];
 }
 
-Fem::Matrix Fem::inv_jacobian_mat(Fem::Matrix jacobian_mat)
+Matrix inv_jacobian_mat(Fem::Matrix jacobian_mat)
 {
     Fem::Matrix inv_jacobian(2,2);
     float det_J = det_jacobian(jacobian_mat);
@@ -307,7 +307,7 @@ Fem::Matrix Fem::inv_jacobian_mat(Fem::Matrix jacobian_mat)
     return inv_jacobian;
 }
 
-Fem::Matrix Fem::calc_local_H(Fem::Element &element, std::vector<Fem::Node> &nodes, float conductivity)
+Matrix calc_local_H(Fem::Element &element, std::vector<Fem::Node> &nodes, float conductivity)
 {
     Fem::Matrix H(4,4);
 
@@ -350,7 +350,7 @@ Fem::Matrix Fem::calc_local_H(Fem::Element &element, std::vector<Fem::Node> &nod
     return H;
 }
 
-Fem::Matrix Fem::calc_local_Hbc(Fem::Element &element, std::vector<Fem::Node> &nodes)
+Matrix calc_local_Hbc(Fem::Element &element, std::vector<Fem::Node> &nodes)
 {
     Fem::Matrix H_bc(4,4);
 
@@ -395,7 +395,7 @@ Fem::Matrix Fem::calc_local_Hbc(Fem::Element &element, std::vector<Fem::Node> &n
     return H_bc;
 }
 
-Fem::Matrix Fem::calc_P(Fem::Element &element, std::vector<Fem::Node> &nodes)
+Matrix Fem::calc_P(Fem::Element &element, std::vector<Fem::Node> &nodes)
 {
     Fem::Matrix p_vec(4,1);
 
@@ -446,7 +446,7 @@ Fem::Matrix Fem::calc_P(Fem::Element &element, std::vector<Fem::Node> &nodes)
     return p_vec;
 }
 
-Fem::Matrix Fem::calc_local_C(Fem::Element &element, std::vector<Fem::Node> &nodes, float rho, float c)
+Matrix calc_local_C(Fem::Element &element, std::vector<Fem::Node> &nodes, float rho, float c)
 {
     Fem::Matrix C(4,4);
 
@@ -482,7 +482,7 @@ Fem::Matrix Fem::calc_local_C(Fem::Element &element, std::vector<Fem::Node> &nod
     return C;
 }
 
-void Fem::aggregate(Fem::Matrix &Global, Fem::Element element, Fem::Matrix &Local)
+void aggregate(Fem::Matrix &Global, Fem::Element element, Fem::Matrix &Local)
 {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
@@ -494,7 +494,7 @@ void Fem::aggregate(Fem::Matrix &Global, Fem::Element element, Fem::Matrix &Loca
     }
 }
 
-void Fem::aggregate_p_vec(Fem::Matrix &P_vec, Fem::Element element, Fem::Matrix &Local)
+void aggregate_p_vec(Fem::Matrix &P_vec, Fem::Element element, Fem::Matrix &Local)
 {
     for(int i=0; i<4; i++){
         int glob_i = element.node_ids[i]-1;
