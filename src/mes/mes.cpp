@@ -395,7 +395,7 @@ Matrix calc_local_Hbc(Fem::Element &element, std::vector<Fem::Node> &nodes)
     return H_bc;
 }
 
-Matrix Fem::calc_P(Fem::Element &element, std::vector<Fem::Node> &nodes)
+Matrix calc_P(Fem::Element &element, std::vector<Fem::Node> &nodes)
 {
     Fem::Matrix p_vec(4,1);
 
@@ -502,7 +502,7 @@ void aggregate_p_vec(Fem::Matrix &P_vec, Fem::Element element, Fem::Matrix &Loca
     }
 }
 
-void Fem::write_to_vtu_file(int step, const std::vector<Fem::Node> &nodes, const std::vector<double> &temp, const std::vector<Fem::Element> &elements)
+void write_to_vtu_file(int step, const std::vector<Fem::Node> &nodes, const std::vector<double> &temp, const std::vector<Fem::Element> &elements)
 {
 
     std::ostringstream fname;
