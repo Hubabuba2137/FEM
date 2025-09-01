@@ -4,11 +4,12 @@ Simple Finite Element Method solver, solving non-stationary heat transfer. Using
 Loading configuration and mesh from .txt file.
 
 
-(Gifs/img1.vtu)
+![Visualization](Gifs/img1.vtu)
 
 It allows you to determine boundary conditions by inputting previously mentioned von Neumann and Robin bs.
 
-(Gifs/img2.vtu)
+
+![Visualization](Gifs/img2.vtu)
 
 ## How to build 
 
