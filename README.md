@@ -1,7 +1,11 @@
 # FEM
 
-Simple Finite Element Method solver, solving non-stationary heat transfer. Using rectangular shape functions with von Neumann and Robin boundary conditions. 
+Simple Finite Element Method solver, solving non-stationary heat transfer. Using rectangular shape functions von Neumann and Robin boundary boundary conditions. 
 Loading configuration and mesh from .txt file.
+
+
+
+It allows you to determine boundary conditions by inputting previously mentioned von Neumann and Robin bs.
 
 ## How to build 
 
@@ -15,7 +19,9 @@ Tou need a c/c++ compiler as well as CMAKE.
 
     cmake --build .
 
-    ./Debug/RAYIMGUI_temp.exe
+    ./Debug/MES
+
+    (or ./MES on linux)
 
 ## Text file
 
